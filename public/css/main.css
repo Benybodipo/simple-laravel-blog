@@ -1,0 +1,67 @@
+#main-container
+{
+    padding: 50px 0 !important;
+}
+
+#filter-area {
+    display: flex;
+    justify-content: flex-end;
+}
+#filter-area select
+{
+    display: inline-block;
+    width: 120px;
+}
+
+.card.post
+{
+    margin-bottom: 20px;
+}
+
+.card-text
+{
+    display: inline-block;
+}
+
+.card-footer > div
+{
+    display: inline-block;
+    max-width: 25%;
+    font-size: 14px;
+}
+
+.card-footer > div:not(:first-of-type)
+{
+    margin-left: 20px;
+}
+
+.card-footer > div span
+{
+    margin-left: 5px;
+}
+
+.card-footer > div.author,
+.card-footer > div.post-date
+{
+    float: left;
+}
+.card-footer > div.likes,
+.card-footer > div.comments
+{
+    float: right;
+}
+
+.post-text
+{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.comment
+{
+    font-size: 12px;
+    max-width: 500px;
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
