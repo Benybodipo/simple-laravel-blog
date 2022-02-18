@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/post', 'PostController');
 Route::post('/like/{post_id}', 'LikeController@like')->name('like');
+Route::post('/comment/{post_id}', 'CommentController@comment')->name('comment');

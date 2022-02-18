@@ -45,7 +45,7 @@
                     </div>
                     <div class="comments">
                         <i class="fa-solid fa-comments"></i>
-                        <span class="comment-count">67</span>
+                        <span class="comment-count">{{count($post->comments)}}</span>
                     </div>
                 </div>
             </div>
@@ -54,29 +54,39 @@
                 {!!$post->content !!}
             </div>
         </div>
+        {{-- Comments area --}}
         <div class="col-sm-12 mt-4">
             <h3>Comments</h3>
             <div class="comment-list">
-                @for ($i = 0; $i < 10; $i++)
+                @foreach ($post->comments as $comment)
                     <div class="comment">
                         <div class="text">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae eum est ipsum officiis provident velit quisquam quae error accusamus praesentium, vel ut ratione in consectetur?</p>
+                            <p>{{$comment->content}}</p>
                         </div>
                         <div class="meta">
-                            <span class="user">
+                            <span class="user mr-4">
                                 <i class="fa-solid fa-user mr-2"></i>
-                                <span class="auth-name">#borolong</span>
+                                <span class="auth-name">
+                                    <a href="">#{{$comment->user->name}}</a>
+                                </span>
                             </span>
                             <span class="date">
                                 <i class="fa-solid fa-calendar-days"></i>
-                                <span class="">25-02-2022</span>
+                                <span class="">{{$comment->created_at->diffForHumans()}}</span>
                             </span>
                         </div>
                     </div>  
-                @endfor
+                @endforeach
             </div>
-            <form action="">
-                
+            <form action="{{route('comment', $post->id)}}" method="POST">
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Comment</label>
+                    <textarea name="content" class="form-control richTextBox" id="comment" rows="3" placeholder="comment"></textarea>
+                    @error('comment') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+                <input type="hidden" name="post_id" value="{{$post->id}}">
+                @csrf
+                <button type="submit" class="btn btn-primary">Comment</button>
             </form>
         </div>
     </div>
