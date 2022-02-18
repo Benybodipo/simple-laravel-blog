@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Like;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -65,8 +66,17 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        $user_id = 1; # Will put auth id
         $post = Post::whereId($id)->first();
-        return view('pages.post')->with(compact('post'));
+
+        $i_liked_it = Like::where('post_id', $id)
+                            ->where('user_id', $user_id)
+                            ->first();
+        $i_liked_it = !is_null($i_liked_it);
+            
+        return view('pages.post')
+                ->with(compact('i_liked_it'))
+                ->with(compact('post'));
     }
 
     /**

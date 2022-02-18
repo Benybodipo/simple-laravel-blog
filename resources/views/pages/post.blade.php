@@ -32,8 +32,16 @@
                         <span class="date">{{$post->created_at->diffForHumans()}}</span>
                     </div>
                     <div class="likes">
-                        <i class="fa-{{(1 > 2) ? 'regular' : 'solid'}} fa-heart"></i>
-                        <span class="like-count">5</span>
+                        <form method="POST" action="{{route('like', [$post->id])}}">
+                            <label for="like-btn">
+                                <?php $user_id = 1; ?>
+                                <i 
+                                    class="fa-{{($i_liked_it || $post->user_id == $user_id) ? 'solid' : 'regular'}} fa-heart"></i>
+                            </label>
+                            @csrf
+                            <button class="btn btn-sm btn-primary hide" id="like-btn" ></button>
+                        </form>
+                        <span class="like-count">{{count($post->likes)}}</span>
                     </div>
                     <div class="comments">
                         <i class="fa-solid fa-comments"></i>

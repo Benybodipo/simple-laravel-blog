@@ -72,3 +72,18 @@
     margin-right: 10px;
     float: right;
 }
+
+.likes form
+{
+    display: inline-block;
+}
+.likes form #like-btn
+{
+    display: none;
+}
+
+.fa-heart
+{
+    cursor: pointer;
+    color: red;
+}
