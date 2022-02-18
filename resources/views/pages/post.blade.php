@@ -1,17 +1,35 @@
 @extends('layouts.main')
 @section('content')
     <div class="row">
+        <div class="action mb-4 clearfix">
+            <form method="POST" action="{{route('post.destroy', [$post])}}">
+                @csrf
+                <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Delete
+                </button>
+                @method('DELETE')
+            </form>
+            <form method="GET" action="{{route('post.edit', [$post])}}">
+                <button class="btn btn-sm btn-primary">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Edit
+                </button>
+            </form>
+        </div>
         <div class="col-sm-12">
-            <h1>Post title goes here....</h1>
+            <h1>{{$post->title}}</h1>
             <div class="metadata">
                 <div class="card-footer clearfix mb-4" style="background: transparent;">
                     <div class="author">
                         <i class="fa-solid fa-user"></i>
-                        <span class="auth-name">#borolong</span>
+                        <span class="auth-name">
+                            <a href="{{1}}">#{{$post->author->name}}</a>
+                        </span>
                     </div>
                     <div class="posted-date">
                         <i class="fa-solid fa-calendar-days"></i>
-                        <span class="date">25-02-2022</span>
+                        <span class="date">{{$post->created_at->diffForHumans()}}</span>
                     </div>
                     <div class="likes">
                         <i class="fa-{{(1 > 2) ? 'regular' : 'solid'}} fa-heart"></i>
@@ -24,13 +42,11 @@
                 </div>
             </div>
 
-            <div class="post-text">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, facilis eaque! Cupiditate voluptatum minima, eius maxime sint error necessitatibus, ducimus veniam ad unde perspiciatis eum itaque enim qui similique possimus inventore placeat dicta quam sequi! Laudantium temporibus nihil aliquam soluta eos asperiores quae non atque debitis! Obcaecati aperiam architecto quia!</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, facilis eaque! Cupiditate voluptatum minima, eius maxime sint error necessitatibus, ducimus veniam ad unde perspiciatis eum itaque enim qui similique possimus inventore placeat dicta quam sequi! Laudantium temporibus nihil aliquam soluta eos asperiores quae non atque debitis! Obcaecati aperiam architecto quia!</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi accusantium natus facere fugit amet, repellendus quae corporis. Atque deserunt, pariatur cupiditate quasi velit delectus cumque aliquam sequi debitis reiciendis eos fuga nobis impedit? Asperiores deleniti mollitia accusamus possimus? Fuga consequuntur modi soluta? Ipsam ad, repudiandae esse, asperiores tenetur veritatis vitae dolorum quia iste id corrupti. Incidunt vero laborum sapiente natus asperiores porro ipsa, et aliquam rerum quam suscipit repellat odit. Dolor quod, sit perferendis fugit quisquam possimus maxime ab dolores rem minus, saepe voluptate, accusamus libero quia nostrum? Quo deleniti expedita sapiente iure asperiores architecto non deserunt? A, odio ex.</p>
+            <div class="post-text clearfix mb-4 pb-4">
+                {!!$post->content !!}
             </div>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-12 mt-4">
             <h3>Comments</h3>
             <div class="comment-list">
                 @for ($i = 0; $i < 10; $i++)

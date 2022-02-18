@@ -46,12 +46,17 @@
                 <aside id="categories" class="col-sm-3">
                     <div class="card">
                         <div class="card-header">
-                        Categories
+                            Categories
                         </div>
                         <ul class="list-group list-group-flush">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">
+                                <a href="">All</a>
+                            </li>
+                            @foreach ($categories as $category)
+                                <li class="list-group-item">
+                                    <a href="">{{$category->name}}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </aside>
