@@ -18,9 +18,24 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $category_id=null)
     {
-        $posts = Post::all();
+        if ($category_id)
+            $posts = Post::where('category_id', $category_id);
+        else
+            $posts = new Post;
+
+        if (!empty($request->input()))
+        {   
+            if ($request->has('orderby'))
+            {
+                $orderBy = $request->input('orderby');
+                $sort = ($request->has('sort')) ? ($request->input('sort')) : 'desc';
+                $posts = $posts->orderBy($orderBy, $sort);
+            }
+        }
+
+        $posts = $posts->paginate(10);
         $categories = Category::all();
 
         return view('pages.home')
@@ -104,7 +119,7 @@ class PostController extends Controller
         if (auth()->user()->id != $post->user_id){
             return back();
         }
-        
+
         $categories = Category::all();
 
         return view('pages.edit-post')

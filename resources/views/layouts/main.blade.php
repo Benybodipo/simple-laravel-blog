@@ -12,25 +12,34 @@
 <body>
     @include('partials.header')
     <?php $route_name = Route::currentRouteName(); ?>
+    @php
+        $order_by = '';
+        $sort = '';
+        if (request()->input('orderby'))
+        {
+            $order_by = app('request')->input('orderby');
+            $sort = app('request')->input('sort');
+        }
+    @endphp
     <div class="container" id="main-container">
-        @if ($route_name == 'post.index' || $route_name == 'posts-per-user')
+        @if ($route_name == 'post.index' || $route_name == 'posts-per-user' || $route_name = 'posts-per-category')
             <div id="filter-area" class="mb-4">
-                <form class="row g-3" style="max-width: 400px;">
+                <form class="row g-3" style="max-width: 400px;" action="{{route('posts-per-category')}}">
                     <div class="col-auto">
                         <i class="fas fa-sort"></i>
-                        <select class="form-select form-select-sm" aria-label="Default select example">
-                            <option selected>Order by</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select form-select-sm" name="orderby" aria-label="Default select example">
+                            <option selected disabled>Order by</option>
+                            <option value="created_at" {{($order_by == 'created_at') ? 'selected': ''}}>Date</option>
+                            <option value="title" {{($order_by == 'title') ? 'selected': ''}}>Title</option>
+                            <option value="user_id" {{($order_by == 'user_id') ? 'selected': ''}}>User</option>
                         </select>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-sort-amount-down"></i>
-                        <select class="form-select form-select-sm" aria-label="Default select example">
-                            <option selected>Sort</option>
-                            <option value="1">Ascending</option>
-                            <option value="2">Descending</option>
+                        <select class="form-select form-select-sm" name="sort" aria-label="Default select example">
+                            <option selected disabled>Sort</option>
+                            <option value="asc" {{($sort == 'asc') ? 'selected': ''}}>Ascending</option>
+                            <option value="desc" {{($sort == 'desc') ? 'selected': ''}}>Descending</option>
                         </select>
                     </div>
                     
@@ -43,7 +52,7 @@
             </div>            
         @endif
         <div class="row {{($route_name == 'post.index' || $route_name == 'posts-per-user') ? '' : 'justify-content-center'}}">
-            @if (Route::currentRouteName() == 'post.index' || $route_name == 'posts-per-user')
+            @if (Route::currentRouteName() == 'post.index' || $route_name == 'posts-per-user' || $route_name = 'posts-per-category')
                 <aside id="categories" class="col-sm-3">
                     <div class="card">
                         <div class="card-header">
@@ -55,7 +64,7 @@
                             </li>
                             @foreach ($categories as $category)
                                 <li class="list-group-item">
-                                    <a href="">{{$category->name}}</a>
+                                    <a href="{{route('posts-per-category', $category->id)}}">{{$category->name}}</a>
                                 </li>
                             @endforeach
                         </ul>

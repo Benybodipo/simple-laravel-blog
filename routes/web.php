@@ -22,6 +22,7 @@ Route::post('/custom-login', 'CustomAuthController@customLogin')->name('custom.l
 Route::post('/logout', 'CustomAuthController@logout')->name('logout');
 
 Route::get('/post/user/{user_id}', 'PostController@getUserPosts')->name('posts-per-user');
+Route::get('/post/category/{category_id?}', 'PostController@index')->name('posts-per-category');
 Route::resource('/post', 'PostController');
 Route::post('/like/{post_id}', 'LikeController@like')->name('like');
 Route::post('/comment/{post_id}', 'CommentController@comment')->name('comment');
