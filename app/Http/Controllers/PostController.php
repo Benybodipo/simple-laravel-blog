@@ -45,7 +45,7 @@ class PostController extends Controller
 
     public function getUserPosts($user_id)
     {
-       $posts = Post::where('user_id', $user_id)->get();
+       $posts = Post::where('user_id', $user_id)->paginate(10);
        $categories = Category::all();
 
        return view('pages.home')

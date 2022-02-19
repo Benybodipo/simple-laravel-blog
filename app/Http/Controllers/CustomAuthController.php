@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
 use Session;
+use App\Models\Category;
 
 class CustomAuthController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        $categories = Category::all();
+        return view('auth.login')->with(compact('categories'));
     }
     
     public function customLogin(Request $request)
@@ -34,7 +36,8 @@ class CustomAuthController extends Controller
 
     public function registration()
     {
-        return view('auth.registration');
+        $categories = Category::all();
+        return view('auth.registration')->with(compact('categories'));
     }
 
     public function customRegistration(Request $request)

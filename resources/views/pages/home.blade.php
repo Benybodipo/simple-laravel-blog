@@ -40,6 +40,10 @@
                     </div>
                 </div>
             @endforeach
+            <div>
+                
+            </div>
+            {!! $posts->links('pagination::bootstrap-4') !!}
         @endif
     </section>
 @endsection

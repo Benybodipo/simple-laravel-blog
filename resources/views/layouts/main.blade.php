@@ -11,8 +11,10 @@
 </head>
 <body>
     @include('partials.header')
-    <?php $route_name = Route::currentRouteName(); ?>
+
     @php
+        $route_name = Route::currentRouteName();
+        $condition =($route_name === 'post.index' || $route_name === 'posts-per-user' || $route_name == 'posts-per-category');
         $order_by = '';
         $sort = '';
         if (request()->input('orderby'))
@@ -22,7 +24,7 @@
         }
     @endphp
     <div class="container" id="main-container">
-        @if ($route_name == 'post.index' || $route_name == 'posts-per-user' || $route_name = 'posts-per-category')
+        @if ($condition)
             <div id="filter-area" class="mb-4">
                 <form class="row g-3" style="max-width: 400px;" action="{{route('posts-per-category')}}">
                     <div class="col-auto">
@@ -52,7 +54,7 @@
             </div>            
         @endif
         <div class="row {{($route_name == 'post.index' || $route_name == 'posts-per-user') ? '' : 'justify-content-center'}}">
-            @if (Route::currentRouteName() == 'post.index' || $route_name == 'posts-per-user' || $route_name = 'posts-per-category')
+            @if ($condition)
                 <aside id="categories" class="col-sm-3">
                     <div class="card">
                         <div class="card-header">
