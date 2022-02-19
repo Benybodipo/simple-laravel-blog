@@ -16,7 +16,7 @@
                         <div class="author">
                             <i class="fa-solid fa-user"></i>
                             <span class="auth-name">
-                                <a href="">
+                                <a href="{{route('posts-per-user', $post->user_id)}}">
                                     {{(strlen($post->author->name) > 10) ? substr($post->author->name,0,10)."..." : $post->author->name}}
                                 </a>
                             </span>

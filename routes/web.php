@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('registration', 'CustomAuthController@registration')->name('registration');
+Route::post('/custom-registration', 'CustomAuthController@customRegistration')->name('custom.registration');
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 
+Route::post('/custom-login', 'CustomAuthController@customLogin')->name('custom.login');
+
+Route::get('/post/user/{user_id}', 'PostController@getUserPosts')->name('posts-per-user');
 Route::resource('/post', 'PostController');
 Route::post('/like/{post_id}', 'LikeController@like')->name('like');
 Route::post('/comment/{post_id}', 'CommentController@comment')->name('comment');

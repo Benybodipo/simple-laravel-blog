@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="row">
-        <h1 class="mb-4">Create new post</h1>
+        <h1 class="mb-4">Edit post</h1>
         <form method="POST" action="{{route('post.update', [$post])}}">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>

@@ -99,3 +99,16 @@
     cursor: pointer;
     color: red;
 }
+
+
+/* Auth */
+
+#login-form,
+#registration-form
+{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 25px 20px;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 5px;
+}

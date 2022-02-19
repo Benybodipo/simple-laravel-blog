@@ -11,8 +11,9 @@
 </head>
 <body>
     @include('partials.header')
+    <?php $route_name = Route::currentRouteName(); ?>
     <div class="container" id="main-container">
-        @if (Route::currentRouteName() == 'post.index')
+        @if ($route_name == 'post.index' || $route_name == 'posts-per-user')
             <div id="filter-area" class="mb-4">
                 <form class="row g-3" style="max-width: 400px;">
                     <div class="col-auto">
@@ -41,8 +42,8 @@
                 </form>
             </div>            
         @endif
-        <div class="row {{(Route::currentRouteName() == 'post.index') ? '' : 'justify-content-center'}}">
-            @if (Route::currentRouteName() == 'post.index')
+        <div class="row {{($route_name == 'post.index' || $route_name == 'posts-per-user') ? '' : 'justify-content-center'}}">
+            @if (Route::currentRouteName() == 'post.index' || $route_name == 'posts-per-user')
                 <aside id="categories" class="col-sm-3">
                     <div class="card">
                         <div class="card-header">

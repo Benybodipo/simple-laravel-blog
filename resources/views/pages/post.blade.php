@@ -24,7 +24,7 @@
                     <div class="author">
                         <i class="fa-solid fa-user"></i>
                         <span class="auth-name">
-                            <a href="{{1}}">#{{$post->author->name}}</a>
+                            <a href="{{route('posts-per-user', $post->user_id)}}">#{{$post->author->name}}</a>
                         </span>
                     </div>
                     <div class="posted-date">
@@ -67,7 +67,7 @@
                             <span class="user mr-4">
                                 <i class="fa-solid fa-user mr-2"></i>
                                 <span class="auth-name">
-                                    <a href="">#{{$comment->user->name}}</a>
+                                    <a href="{{route('posts-per-user', $comment->user_id)}}">#{{$comment->user->name}}</a>
                                 </span>
                             </span>
                             <span class="date">

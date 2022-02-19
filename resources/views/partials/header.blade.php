@@ -8,10 +8,10 @@
             <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
                 <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Right</a>
+                        <a class="nav-link" href="{{route('login')}}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Right</a>
+                        <a class="nav-link" href="{{route('registration')}}">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn-primary btn-sm text-white" href="{{route('post.create')}}">Create new article</a>

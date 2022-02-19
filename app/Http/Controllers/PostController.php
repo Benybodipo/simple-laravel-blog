@@ -24,6 +24,16 @@ class PostController extends Controller
             ->with(compact('categories'));
     }
 
+    public function getUserPosts($user_id)
+    {
+       $posts = Post::where('user_id', $user_id)->get();
+       $categories = Category::all();
+
+       return view('pages.home')
+            ->with(compact('posts'))
+            ->with(compact('categories'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
