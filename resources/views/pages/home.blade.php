@@ -5,12 +5,12 @@
             <div class="col-sm-6">
                 <div class="card post">
                     <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{route('post.show', $post->id)}}" style="text-decoration: none;">
-                            {{$post->title}}
-                        </a>
-                    </h5>
-                    <p class="card-text">{!! strlen($post->content) > 400 ? substr($post->content,0,400)."[...]" : $post->content !!}</p>
+                        <h5 class="card-title">
+                            <a href="{{route('post.show', $post->id)}}" style="text-decoration: none;">
+                                {{$post->title}}
+                            </a>
+                        </h5>
+                        <p class="card-text">{!! strlen($post->content) > 400 ? substr($post->content,0,400)."[...]" : $post->content !!}</p>
                     </div>
                     <div class="card-footer clearfix">
                         <div class="author">

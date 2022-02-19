@@ -19,6 +19,7 @@ Route::post('/custom-registration', 'CustomAuthController@customRegistration')->
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 
 Route::post('/custom-login', 'CustomAuthController@customLogin')->name('custom.login');
+Route::post('/logout', 'CustomAuthController@logout')->name('logout');
 
 Route::get('/post/user/{user_id}', 'PostController@getUserPosts')->name('posts-per-user');
 Route::resource('/post', 'PostController');

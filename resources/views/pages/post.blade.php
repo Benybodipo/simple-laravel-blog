@@ -1,22 +1,24 @@
 @extends('layouts.main')
 @section('content')
     <div class="row">
-        <div class="action mb-4 clearfix">
-            <form method="POST" action="{{route('post.destroy', [$post])}}">
-                @csrf
-                <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash-can"></i>
-                    Delete
-                </button>
-                @method('DELETE')
-            </form>
-            <form method="GET" action="{{route('post.edit', [$post])}}">
-                <button class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    Edit
-                </button>
-            </form>
-        </div>
+        @if (Auth::check() && ($post->user_id == auth()->user()->id))
+            <div class="action mb-4 clearfix">
+                <form method="POST" action="{{route('post.destroy', [$post])}}">
+                    @csrf
+                    <button class="btn btn-sm btn-danger">
+                        <i class="fa-solid fa-trash-can"></i>
+                        Delete
+                    </button>
+                    @method('DELETE')
+                </form>
+                <form method="GET" action="{{route('post.edit', [$post])}}">
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Edit
+                    </button>
+                </form>
+            </div>
+        @endif
         <div class="col-sm-12">
             <h1>{{$post->title}}</h1>
             <div class="metadata">

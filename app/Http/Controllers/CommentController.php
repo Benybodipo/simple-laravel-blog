@@ -15,7 +15,7 @@ class CommentController extends Controller
             'post_id' => 'required',
         ]);
 
-        $user_id = 2; # Will use authenticated user id
+        $user_id = auth()->user()->id; # Will use authenticated user id
         $post = Post::whereId($request->post_id)->first();
         if ($post)
         {

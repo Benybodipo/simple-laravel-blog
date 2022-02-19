@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,7 +65,7 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-        $request['user_id'] = 1;
+        $request['user_id'] = auth()->user()->id;
         // dd($request->all());
 
         $post = Post::create($request->all());
@@ -76,7 +80,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $user_id = 1; # Will put auth id
+        $user_id = auth()->user()->id; # Will put auth id
         $post = Post::whereId($id)->first();
 
         $i_liked_it = Like::where('post_id', $id)
@@ -97,6 +101,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (auth()->user()->id != $post->user_id){
+            return back();
+        }
+        
         $categories = Category::all();
 
         return view('pages.edit-post')

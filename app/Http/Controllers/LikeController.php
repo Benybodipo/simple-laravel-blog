@@ -10,7 +10,7 @@ class LikeController extends Controller
 {
     public function like(Request $request, $post_id)
     {
-        $user_id = 2; # Will use authenticated user id
+        $user_id = auth()->user()->id; # Will use authenticated user id
         $post = Post::whereId($post_id)->where('user_id', '!=', $user_id)->first();
 
         if ($post)
