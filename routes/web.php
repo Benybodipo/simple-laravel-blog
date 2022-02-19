@@ -14,6 +14,7 @@ use App\Http\Controllers\CustomAuthController;
 |
 */
 
+Route::get('/', 'PostController@index')->name('home');
 Route::get('home', 'PostController@index')->name('home');
 
 ### Auth

@@ -14,7 +14,7 @@
 
     @php
         $route_name = Route::currentRouteName();
-        $condition =($route_name === 'post.index' || $route_name === 'posts-per-user' || $route_name == 'posts-per-category');
+        $condition = in_array($route_name, ['post.index', 'posts-per-user', 'posts-per-category','home']);
         $order_by = '';
         $sort = '';
         if (request()->input('orderby'))
