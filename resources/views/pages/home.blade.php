@@ -2,7 +2,7 @@
 @section('content')
     <section class="row">
         @foreach ($posts as $post)
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="card post">
                     <div class="card-body">
                         <h5 class="card-title">

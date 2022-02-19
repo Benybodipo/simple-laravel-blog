@@ -46,8 +46,10 @@
                         <span class="like-count">{{count($post->likes)}}</span>
                     </div>
                     <div class="comments">
-                        <i class="fa-solid fa-comments"></i>
-                        <span class="comment-count">{{count($post->comments)}}</span>
+                        <a href="#comment-section" style="color: #212529; text-decoration:none;">
+                            <i class="fa-solid fa-comments"></i>
+                            <span class="comment-count">{{count($post->comments)}}</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -57,7 +59,7 @@
             </div>
         </div>
         {{-- Comments area --}}
-        <div class="col-sm-12 mt-4">
+        <div class="col-sm-12 mt-4" id="comment-section">
             <h3>Comments</h3>
             <div class="comment-list">
                 @foreach ($post->comments as $comment)
